@@ -10,5 +10,5 @@ include:
     shield: totem_left
   - board: seeeduino_xiao_ble
     shield: totem_right
-  - board: seeeduino_xiao_ble
+  - board: nice_nano_v2
     shield: totem_dongle
