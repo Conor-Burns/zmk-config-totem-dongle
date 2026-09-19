@@ -12,7 +12,6 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/pointing.h>
 
 #define Base        0
 #define Nav         1
@@ -47,54 +46,191 @@
             bindings = <&kp>, <&kp>;
         };
 
-        col_mm: col_mm {
+        col_sq: col_sq {
             compatible = "zmk,behavior-mod-morph";
-            label = ",’";
+            label = "COL_SQ";
             bindings = <&kp COMMA>, <&kp SINGLE_QUOTE>;
 
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        mm_dot: mm_dot {
+        dot_dq: dot_dq {
             compatible = "zmk,behavior-mod-morph";
-            label = ".”";
+            label = "DOT_DQ";
             bindings = <&kp DOT>, <&kp DOUBLE_QUOTES>;
 
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+    };
 
-        td_han: td_han {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_HAN";
-            #binding-cells = <0>;
-            bindings = <&kp H>, <&kp LANG_HANGEUL>;
+    combos {
+        compatible = "zmk,combos";
+
+        Back {
+            bindings = <&kp LA(LEFT)>;
+            key-positions = <1 2>;
+            layers = <0>;
+        };
+
+        Forward {
+            bindings = <&kp LA(RIGHT)>;
+            key-positions = <2 3>;
+            layers = <0>;
+        };
+
+        LeftDesktop {
+            bindings = <&DeskL>;
+            key-positions = <11 12>;
+            layers = <0>;
+        };
+
+        RightDesktop {
+            bindings = <&DeskR>;
+            key-positions = <12 13>;
+            layers = <0>;
+        };
+
+        MoveLeft {
+            bindings = <&MoveL>;
+            key-positions = <22 23>;
+            layers = <0>;
+        };
+
+        MoveRight {
+            bindings = <&MoveR>;
+            key-positions = <23 24>;
+            layers = <0>;
+        };
+
+        Home {
+            bindings = <&kp HOME>;
+            key-positions = <6 7>;
+            layers = <0>;
+        };
+
+        End {
+            bindings = <&kp END>;
+            key-positions = <27 28>;
+            layers = <0>;
+        };
+
+        PgUp {
+            bindings = <&kp PAGE_UP>;
+            key-positions = <7 8>;
+            layers = <0>;
+        };
+
+        PgDn {
+            bindings = <&kp PAGE_DOWN>;
+            key-positions = <17 18>;
+            layers = <0>;
+        };
+
+        HanEng {
+            bindings = <&kp LANG_HANGEUL>;
+            key-positions = <16 17>;
+            layers = <0>;
+        };
+
+        Grave {
+            bindings = <&kp GRAVE>;
+            key-positions = <28 29>;
+            layers = <0>;
         };
     };
 
-    combos { compatible = "zmk,combos"; };
-
     macros {
-        lcopy: line_copy {
+        CopyL: CopyL {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp HOME &kp LS(END) &kp LC(C)>;
-            label = "LINE_COPY";
+            label = "CopyL";
         };
 
-        outin: OutNIn {
+        outin: outin {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LC(LEFT_ALT) &kp LG(L) &kp LC(LA(DELETE))>;
-            label = "OUTNIN";
+            label = "outin";
         };
 
         pw: pw {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp S &kp M &kp L &kp F &kp F &kp L &kp F &kp K &kp N0 &kp MINUS &kp RET>;
-            label = "PW";
+            label = "pw";
+        };
+
+        VDI: VDI {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp F24 &kp LC(LALT)>;
+            label = "VDI";
+        };
+
+        PrtScr: PrtScr {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp PRINTSCREEN>;
+            label = "PrtScr";
+        };
+
+        OCR: OCR {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp LG(LS(T))>;
+            label = "OCR";
+        };
+
+        CropS: CropS {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp LG(LC(LS(T)))>;
+            label = "CropS";
+        };
+
+        CropH: CropH {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp LG(LC(LS(S)))>;
+            label = "CropH";
+        };
+
+        Search: Search {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp LG(LA(SPACE))>;
+            label = "Search";
+        };
+
+        DeskL: DeskL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp LG(LC(LEFT))>;
+            label = "DeskL";
+        };
+
+        DeskR: DeskR {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp LG(LC(RIGHT))>;
+            label = "DeskR";
+        };
+
+        MoveL: MoveL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp LG(LC(LS(LEFT)))>;
+            label = "MoveL";
+        };
+
+        MoveR: MoveR {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT_ALT) &kp LG(LC(LS(RIGHT)))>;
+            label = "MoveR";
         };
     };
 
@@ -102,52 +238,47 @@
         compatible = "zmk,keymap";
 
         Base {
-            display-name = "Base";
             bindings = <
-           &kp Q       &kp W       &kp E             &kp R        &kp T          &kp Y        &kp U        &kp I            &kp O       &kp P
-           &hm LGUI A  &hm LALT S  &hm LEFT_SHIFT D  &hm LCTRL F  &hm LCTRL G    &td_han      &hm LCTRL J  &hm LSHFT K      &hm LALT L  &hm LEFT_GUI SEMICOLON
-&lt 4 DEL  &kp Z       &kp X       &kp C             &kp V        &kp B          &kp N        &kp M        &col_mm          &mm_dot     &kp SLASH               &kp BACKSPACE
-                                   &lt 3 ESC         &lt 2 TAB    &lt 1 ENTER    &lt 1 SPACE  &sk LSHIFT   &lt 3 RIGHT_ALT
+           &kp Q       &kp W       &kp E         &kp R        &kp T          &kp Y        &kp U        &kp I        &kp O       &kp P
+           &hm LGUI A  &hm LALT S  &hm LSHIFT D  &hm LCTRL F  &hm LCTRL G    &kp H        &hm LCTRL J  &hm LSHFT K  &hm LALT L  &hm LGUI SEMICOLON
+&lt 3 DEL  &kp Z       &kp X       &kp C         &kp V        &kp B          &kp N        &kp M        &col_sq      &dot_dq     &kp SLASH           &lt 3 BACKSPACE
+                                   &lt 2 ESC     &lt 3 TAB    &lt 1 ENTER    &lt 1 SPACE  &sk LSHIFT   &lt 2 RALT
             >;
+
+            label = "Base";
         };
 
-        Func {
-            display-name = "Function and navigation";
+        Expansion {
             bindings = <
-        &kp F1   &kp F2   &kp F3  &kp F4       &kp PRINTSCREEN      &kp LG(LA(SPACE))  &trans         &trans       &kp F9     &kp F10
-        &kp F5   &kp F6   &kp F7  &kp F8       &kp LG(LC(LS(T)))    &kp LEFT           &kp DOWN       &kp UP       &kp RIGHT  &trans
-&trans  &kp F11  &kp F12  &lcopy  &kp LC(F13)  &kp LG(LC(LS(S)))    &kp HOME           &kp PAGE_DOWN  &kp PAGE_UP  &kp END    &trans   &trans
-                          &trans  &trans       &trans               &trans             &trans         &trans
+        &kp F1   &kp F2   &kp F3  &kp F4       &PrtScr    &Search       &VDI          &kp F8      &kp F9         &kp F10
+        &kp F5   &kp F6   &kp F7  &CropH       &CropS     &kp LEFT      &kp DOWN      &kp UP      &kp RIGHT      &kp LANG_HANJA
+&trans  &kp F11  &kp F12  &CopyL  &kp LC(F13)  &OCR       &kp LC(LEFT)  &kp LC(DOWN)  &kp LC(UP)  &kp LC(RIGHT)  &kp INS         &trans
+                          &trans  &trans       &trans     &trans        &trans        &trans
             >;
+
+            label = "Fn";
         };
 
-        Sym {
-            display-name = "Symbols";
+        Symbols {
             bindings = <
-        &kp EXCL          &kp AT             &kp HASH              &kp DOLLAR             &kp PERCENT    &kp CARET  &kp AMPERSAND  &kp STAR        &kp BACKSLASH  &kp PIPE
-        &kp LEFT_BRACE    &kp RIGHT_BRACE    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans         &trans     &kp MINUS      &kp UNDERSCORE  &kp PLUS       &kp EQUAL
-&trans  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LESS_THAN         &kp GREATER_THAN       &trans         &trans     &kp TILDE      &kp GRAVE       &trans         &trans     &trans
-                                             &trans                &trans                 &trans         &trans     &trans         &trans
+           &kp EXCL          &kp AT             &kp HASH              &kp DOLLAR             &kp PERCENT    &kp PLUS   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp STAR
+           &kp LEFT_BRACE    &kp RIGHT_BRACE    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp CARET      &kp MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp EQUAL
+&kp TILDE  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LESS_THAN         &kp GREATER_THAN       &kp AMPS       &kp UNDER  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH  &kp PIPE
+                                                &trans                &trans                 &trans         &trans     &kp N0        &trans
             >;
+
+            label = "Sym";
         };
 
         Macro {
-            display-name = "Macro and Numpad";
             bindings = <
-        &kp F13  &kp F14  &kp F15  &kp F16  &trans    &kp MINUS   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS
-        &kp F17  &kp F18  &kp F19  &kp F20  &trans    &kp SLASH   &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp ASTERISK
-&trans  &kp F21  &kp F22  &kp F23  &kp F24  &trans    &kp PERIOD  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL     &trans
-                          &trans   &trans   &trans    &trans      &kp NUMBER_0  &trans
+        &kp F13  &kp F14  &kp F15   &kp F16    &trans       &trans     &trans   &trans   &pw     &outin
+        &kp F17  &kp F18  &kp F19   &kp F20    &trans       &trans     &trans   &trans   &trans  &trans
+&trans  &kp F21  &kp F22  &kp F23   &kp F24    &trans       &trans     &trans   &trans   &trans  &trans  &trans
+                          &kp RALT  &sk LSHFT  &kp SPACE    &kp ENTER  &kp TAB  &kp ESC
             >;
-        };
 
-        etc {
-            bindings = <
-        &outin  &pw     &mkp MB4          &mkp MB5           &trans    &trans  &trans  &trans  &trans  &trans
-        &trans  &trans  &kp LG(LC(LEFT))  &kp LG(LC(RIGHT))  &trans    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans            &trans             &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans            &trans             &trans    &trans  &trans  &trans
-            >;
+            label = "Macro";
         };
     };
 };
