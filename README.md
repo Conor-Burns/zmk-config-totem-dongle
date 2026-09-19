@@ -2,6 +2,7 @@
 
 
 ## Keymap
+- **Editor** https://nickcoutsos.github.io/keymap-editor/
 - **Drawer** https://keymap-drawer.streamlit.app/?zmk_url=https://github.com/jis333/zmk-config-totem-dongle/blob/main/config/totem.keymap
 - Configuration. paste to Raw configuration
 ```
